@@ -1,0 +1,39 @@
+{   
+    "columns":[
+        {
+            "type": "CoinbaseInstitution",
+            "name": "Coinbase crypto",
+            "api_key": "",
+            "api_secret": ""
+        },
+        {
+            "name": "Bitcoin (BTC) wallet",
+            "type": "BitcoinInstitution",
+            "wallet_addrs": [
+                "",
+                ""
+            ]
+        },
+        {
+            "name": "Helium (HNT) wallet",
+            "type": "HeliumInstitution",
+            "wallet_addrs": [
+                ""
+            ]
+        },
+        {
+            "name": "Chia (XCH) wallet",
+            "type": "ChiaInstitution",
+            "wallet_addrs": [
+                ""
+            ]
+        },
+        {
+            "name": "Ethereum (ETH) wallet",
+            "type": "EthereumInstitution",
+            "wallet_addrs": [
+                ""
+            ]
+        }
+    ]
+}
