@@ -13,7 +13,7 @@ class CoinbaseInstitution(Institution):
 
         self.coinbase_client = Client(config["api_key"], config["api_secret"])
 
-    def get_balance(self) -> int:
+    def get_balance(self) -> float:
         total = 0
         starting_after = None
 
@@ -32,4 +32,4 @@ class CoinbaseInstitution(Institution):
                     total += float(acct.native_balance.amount)
                 break
 
-        return round(total)
+        return round(total, 2)

@@ -19,7 +19,7 @@ class HeliumInstitution(Institution):
             params={"ids": "helium", "vs_currencies": "usd"},
         ).json()["helium"]["usd"]
 
-    def get_balance(self) -> int:
+    def get_balance(self) -> float:
         total = 0
         for wallet_addr in self.config.get("wallet_addrs", list()):
             res = requests.get(
@@ -29,4 +29,4 @@ class HeliumInstitution(Institution):
             # for some reason, I guess we use 10**8 representation of HNT?
             total += (res["data"]["balance"] * 10 ** -8) * self.current_exchange_rate
 
-        return round(total)
+        return round(total, 2)

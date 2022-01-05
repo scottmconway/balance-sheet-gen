@@ -29,7 +29,14 @@ class Institution:
         self.config = config
         self.logger = logger
 
-    def get_balance() -> int:
+    def get_balance(self) -> int:
+        """
+        Given a valid configuration in __init__,
+        return the balance (in USD) for this institution's account
+
+        :return: The USD balance of the account
+        :rtype: float
+        """
         raise NotImplementedError()
 
 

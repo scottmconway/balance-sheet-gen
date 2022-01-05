@@ -19,7 +19,7 @@ class ChiaInstitution(Institution):
             params={"ids": "chia", "vs_currencies": "usd"},
         ).json()["chia"]["usd"]
 
-    def get_balance(self) -> int:
+    def get_balance(self) -> float:
         total = 0
         for wallet_addr in self.config["wallet_addrs"]:
 
@@ -28,4 +28,4 @@ class ChiaInstitution(Institution):
             ).json()
             total += res["xch"]
 
-        return round(total * self.current_exchange_rate)
+        return round(total * self.current_exchange_rate, 2)

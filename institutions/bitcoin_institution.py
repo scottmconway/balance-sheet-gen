@@ -19,7 +19,7 @@ class BitcoinInstitution(Institution):
             params={"ids": "bitcoin", "vs_currencies": "usd"},
         ).json()["bitcoin"]["usd"]
 
-    def get_balance(self) -> int:
+    def get_balance(self) -> float:
         total = 0
         for wallet_addr in self.config.get("wallet_addrs", list()):
             res = requests.get(
@@ -29,4 +29,4 @@ class BitcoinInstitution(Institution):
                 res["wallet"]["final_balance"] * 10 ** -8
             ) * self.current_exchange_rate
 
-        return round(total)
+        return round(total, 2)
