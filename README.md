@@ -52,6 +52,20 @@ Note that this Institution does _not_ get accounts / balances from Coinbase Pro.
 |`api_key`|str|A valid API key for Coinbase's API|
 |`api_secret`|str|A valid API secret for Coinbase's API|
 
+### CoinbasePro Institution
+This institution uses the Coinbase Pro API to pull the total USD value of all assets summed together. The USD value is provided directly by Coinbase Pro's API.
+
+The provided API token must have the `View` permission for this Institution to function. API tokens can be generated here: [https://pro.coinbase.com/profile/api](https://pro.coinbase.com/profile/api)
+
+Similarly to the above, this only fetches balances from a Coinbase _Pro_ account, and not the mapped Coinbase account.
+
+#### Configuration
+|Name|Type|Description|
+|-|-|-|
+|`api_key`|str|A valid API key for Coinbase Pro's API|
+|`api_secret`|str|A valid API secret for Coinbase Pro's API|
+|`passphrase`|str|The passphrase for the associated API key|
+
 ### Helium Institution
 This institution checks a series of Helium (HNT) wallet addresses against helium.io's API and returns the sum of BTC in USD, according to coingecko.
 
