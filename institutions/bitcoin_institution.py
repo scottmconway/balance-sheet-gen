@@ -2,6 +2,7 @@ import logging
 from typing import Dict
 
 import requests
+from pycoingecko import CoinGeckoAPI
 
 from .institution import Institution
 
@@ -13,11 +14,9 @@ class BitcoinInstitution(Institution):
         self.config = config
 
         self.ADDRESS_BALANCE_URL = "https://blockchain.info/multiaddr"
-
-        self.current_exchange_rate = requests.get(
-            "https://api.coingecko.com/api/v3/simple/price",
-            params={"ids": "bitcoin", "vs_currencies": "usd"},
-        ).json()["bitcoin"]["usd"]
+        self.current_exchange_rate = CoinGeckoAPI().get_price("bitcoin", "usd")[
+            "bitcoin"
+        ]["usd"]
 
     def get_balance(self) -> float:
         total = 0

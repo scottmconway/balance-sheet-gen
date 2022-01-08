@@ -2,6 +2,7 @@ import logging
 from typing import Dict
 
 import requests
+from pycoingecko import CoinGeckoAPI
 
 from .institution import Institution
 
@@ -14,10 +15,9 @@ class HeliumInstitution(Institution):
 
         self.HELIUM_API_URL = "https://api.helium.io"
 
-        self.current_exchange_rate = requests.get(
-            "https://api.coingecko.com/api/v3/simple/price",
-            params={"ids": "helium", "vs_currencies": "usd"},
-        ).json()["helium"]["usd"]
+        self.current_exchange_rate = CoinGeckoAPI().get_price("helium", "usd")[
+            "helium"
+        ]["usd"]
 
     def get_balance(self) -> float:
         total = 0
