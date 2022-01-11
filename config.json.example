@@ -1,6 +1,21 @@
 {   
     "columns":[
         {
+            "type": "OfxInstitution",
+            "name": "OFX Investment Account",
+            "username": "",
+            "password": "",
+            "account_id": "",
+            "account_type": "investment",
+            "institution_info": {
+                "org": "",
+                "broker_id": "",
+                "bank_id": "",
+                "fid": "",
+                "url": ""
+            }
+        },
+        {
             "type": "CoinbaseInstitution",
             "name": "Coinbase crypto",
             "api_key": "",

@@ -1,4 +1,5 @@
 cbpro
 coinbase
+ofxtools
 pycoingecko
 requests

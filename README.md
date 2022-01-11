@@ -32,7 +32,7 @@ This institution checks a series of wallet addresses against blockchain.info's A
 |`wallet_addrs`|List[str]|A list of valid BTC addresses to check|
 
 ### Chia Institution
-This institution checks a series of wallet addresses against xchscan's API and returns the sum of BTC in USD, according to coingecko.
+This institution checks a series of wallet addresses against xchscan's API and returns the sum of XCH in USD, according to coingecko.
 
 #### Configuration
 |Name|Type|Description|
@@ -66,8 +66,16 @@ Similarly to the above, this only fetches balances from a Coinbase _Pro_ account
 |`api_secret`|str|A valid API secret for Coinbase Pro's API|
 |`passphrase`|str|The passphrase for the associated API key|
 
+### Ethereum Institution
+This institution checks a series of wallet addresses against ethplorer.io's API and returns the sum of ETH in USD, according to coingecko.
+
+#### Configuration
+|Name|Type|Description|
+|-|-|-|
+|`wallet_addrs`|List[str]|A list of valid ETH addresses to check|
+
 ### Helium Institution
-This institution checks a series of Helium (HNT) wallet addresses against helium.io's API and returns the sum of BTC in USD, according to coingecko.
+This institution checks a series of Helium (HNT) wallet addresses against helium.io's API and returns the sum of HNT in USD, according to coingecko.
 
 #### Configuration
 |Name|Type|Description|
@@ -84,6 +92,34 @@ If you're _really_ interested (and/or distrustful of this tool), you can find yo
 |-|-|-|
 |`account_id`|str|A valid account ID for your account / API key|
 |`api_key`|str|An API key for Discover Bank's Mobile API|
+
+### OFX Institution
+This institution serves as a general connector to OFX servers. At this time, I don't have many to experiment on, nor in-depth knowledge of OFX, so your mileage may vary with this one. Configuration values for your bank's OFX service can be retrieved from [OFXHome](http://www.ofxhome.com/).
+
+Notes:
+* Even if your bank/brokerage has 2FA enabled, I bet they won't respect it if they support OFX. But before you blow a gasket, note that OFX access is read-only. So at least there's that.
+* Even if there's an entry in OFXHome, it may not be accurate or may no longer be functional. Please try to connect using ofxget before plugging your configuration into this program.
+
+#### Configuration
+|Name|Type|Description|
+|-|-|-|
+|`username`|str|Your account's username|
+|`password`|str|Your account's password|
+|`account_id`|str|The account ID, according to your bank / brokerage|
+|`account_type`|str|The type of account - at this time, only `investment` is supported|
+|`institution_info`|Dict|A dictionary with information about the OFX server, with configuration as follows|
+
+##### `insitution_info`
+
+At this time, this configuration can only take on the following form. In the future™, it should be able to function with an `ofxget_friendly_name`, as the `ofxget` client does, to source these attributes from OFXHome (provided the service stays online).
+
+|Name|Type|Description|
+|-|-|-|
+|`org`|str|The name of the institution supporting OFX|
+|`bank_id`|Optional[str]|If the institution is a bank, its ID according to OFXHome, else None|
+|`broker_id`|Optional[str]|If the institution is a brokerage, its ID according to OFXHome, else None|
+|`fid`|str|The FID, according to OFXHome|
+|`url`|str|The OFX URL for this institution, according to OFXHome|
 
 ### Venmo Institution
 Coming soon!
