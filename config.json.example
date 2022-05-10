@@ -62,6 +62,14 @@
             "type": "DiscoverBankInstitution",
             "account_id": "",
             "api_key": ""
+        },
+        {
+            "name": "Atmos Savings",
+            "type": "AtmosInstitution",
+            "account_name": "AtmosACTION",
+            "email": "",
+            "password": "",
+            "totp_secret": ""
         }
     ]
 }

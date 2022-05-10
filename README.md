@@ -23,6 +23,19 @@ Institutions are the objects that can be defined under the "type" field in a giv
 
 `get_balance()` should always return USD, unless otherwise specified.
 
+### Atmos Institution
+This is a connector for [Atmos Financial](https://my.joinatmos.com)
+
+Non-MFA login has not been tested. If it doesn't work, I recommend setting up MFA rather than raising an issue in this repo (or doing both!).
+
+#### Configuration
+|Name|Type|Description|
+|-|-|-|
+|`account_name`|str|The friendly name of your Atmos account, visible in the web UI - eg. "Checking"|
+|`email`|str|The email address used to log in|
+|`password`|str|The password used to log in|
+|`totp_secret`|Optional[str]|If MFA is enabled, the Base64-encoded TOTP secret used to log in|
+
 ### Bitcoin Institution
 This institution checks a series of wallet addresses against blockchain.info's API and returns the sum of BTC in USD, according to coingecko.
 
