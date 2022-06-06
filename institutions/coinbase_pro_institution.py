@@ -12,6 +12,12 @@ class CoinbaseProInstitution(Institution):
     def __init__(self, type_name: str, name: str, config: Dict, logger: logging.Logger):
         super(type(self), self).__init__(type_name, name, config, logger)
 
+        self.COIN_NAME_REPLACEMENTS = {
+            "avalanche": "avalanche-2",
+            "ether": "ethereum",
+            "polygon": "matic-network",
+        }
+
         self.cb_pro_client = cbpro.AuthenticatedClient(
             config["api_key"], config["api_secret"], config["passphrase"]
         )
@@ -37,10 +43,14 @@ class CoinbaseProInstitution(Institution):
                 # acct has the coin's ticker, and coingecko wants the name
                 # eg BTC -> bitcoin
                 # TODO could operate on all coin IDs instead of one at a time
+
                 coin_name = ticker_lookup[acct["currency"]]
 
-                # here's to hoping that there aren't any other odd cases like
-                # this
+                # See if we have a hard-coded re-name for this currency
+                # by default, stick to the current name
+                coin_name = self.COIN_NAME_REPLACEMENTS.get(coin_name, coin_name)
+
+                # here's to hoping there aren't any other odd cases like this
                 if coin_name == "united-states-dollar":
                     usd_rate = 1
                 else:
