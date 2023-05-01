@@ -32,7 +32,7 @@ class AtmosInstitution(Institution):
         }
 
         login_res = self.api_session.post(
-            f"{self.API_ROOT}/users/auth", json=login_json
+            f"{self.API_ROOT}/users/session", json=login_json
         ).json()
 
         self.api_session.headers["Authorization"] = f"Bearer {login_res['token']}"
